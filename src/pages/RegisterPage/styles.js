@@ -21,7 +21,7 @@ export const StyledRegister = styled.div`
         border-radius: 5px;
         padding: 0.6rem 1rem;
         color: white;
-        background-color: var(--grey-3);
+        background-color: var(--grey-2);
     }
 
     button {

@@ -25,6 +25,20 @@ export const StyledDashboard = styled.div`
 
     ul {
         margin-top: 2rem;
+    }
+
+      button {
+
+        border-style: none;
+        border-radius: 5px;
+        padding: 0.6rem 1rem;
+        color: white;
+        background-color: var(--grey-2);
+
+    }
+
+    /* ul {
+        margin-top: 2rem;
         background-color: var(--grey-2);
         padding: 1rem;
         border-radius: 5px;
@@ -39,7 +53,7 @@ export const StyledDashboard = styled.div`
         background-color: var(--grey-4);
         padding: 1rem;
         border-radius: 5px;
-    }
+    } */
 
     p {
         color: var(--grey-1);

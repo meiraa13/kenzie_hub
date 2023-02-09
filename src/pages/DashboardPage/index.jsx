@@ -1,5 +1,6 @@
 import { StyledDashboard } from "./styles"
 import { useNavigate } from "react-router-dom"
+import { KenzieHub } from "../../components/KenzieHub"
 
 export function DashboardPage({ user, setUser }){
 
@@ -16,7 +17,7 @@ export function DashboardPage({ user, setUser }){
     return(
         <StyledDashboard>
             <header className="container">
-                <h2>Kenzie Hub</h2>
+                <KenzieHub />
                 <button onClick={logout}>Sair</button>
             </header>
             <section>
@@ -27,23 +28,9 @@ export function DashboardPage({ user, setUser }){
             </section>
             <main className="container">
                 <div>
-                    <h3>Tecnologias</h3>
-                    <button>+</button>
+                    <h3>Que pena! estamos em desenvolvimento :( </h3>
                 </div>
-                <ul>
-                    <li>
-                        <h3>ReactJS</h3>
-                        <p>Intermediário</p>
-                    </li>
-                    <li>
-                        <h3>ReactJS</h3>
-                        <p>Intermediário</p>
-                    </li>
-                    <li>
-                        <h3>ReactJS</h3>
-                        <p>Intermediário</p>
-                    </li>
-                </ul>
+                <ul>Nossa aplicação está em desenvolvimento, em breve teremos novidades</ul>
             </main>
 
         </StyledDashboard>
