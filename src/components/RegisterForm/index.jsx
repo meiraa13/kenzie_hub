@@ -32,7 +32,7 @@ export function RegisterForm(){
             const response = await api.post('/users', data)
             if(response.status == 201){
                 toast.success('Usuário cadastrado com sucesso!')
-                navigate('/login')
+                navigate('/')
             }
         
         } catch(error){
