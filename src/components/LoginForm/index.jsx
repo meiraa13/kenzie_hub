@@ -54,7 +54,7 @@ export function LoginForm({ setLoading, setUser }){
 
             <button type="submit">Entrar</button>
             <p>Ainda não possui uma conta?</p>
-            <Link to={'/'}>Cadastre-se</Link>
+            <Link to={'/register'}>Cadastre-se</Link>
         </form>
     )
 

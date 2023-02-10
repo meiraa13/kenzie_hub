@@ -14,8 +14,8 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<RegisterPage />} />
-        <Route path='/login' element={<LoginPage setUser={setUser}/>} />
+        <Route path='/' element={<LoginPage setUser={setUser}/>}/>
+        <Route path='/register' element={<RegisterPage/>} />
         <Route path='/dashboard/:userName' element={<DashboardPage user={user} setUser={setUser} />} />
       </Routes>
       <ToastContainer
