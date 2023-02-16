@@ -1,15 +1,16 @@
 import { StyledLogin } from "./styles"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Loading } from "../../components/Loading"
 import { KenzieHub } from "../../components/KenzieHub"
 import { LoginForm } from "../../components/LoginForm"
+import { UserContext } from "../../providers/UserContext"
 
 
 
-export function LoginPage({ setUser }){
+export function LoginPage(){
 
-    const [loading, setLoading] = useState(false)
-
+    const { loading } = useContext(UserContext)
+  
   
     return(
         <StyledLogin>
@@ -18,7 +19,7 @@ export function LoginPage({ setUser }){
             </header>
             {loading? <Loading />:
                 <main className="container2">
-                    <LoginForm setUser={setUser} setLoading={setLoading} />
+                    <LoginForm />
                 </main>
             }
         </StyledLogin>

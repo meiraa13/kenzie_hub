@@ -1,19 +1,20 @@
 import { StyledDashboard } from "./styles"
-import { useNavigate } from "react-router-dom"
 import { KenzieHub } from "../../components/KenzieHub"
+import { useContext, useRef } from "react"
+import { UserContext } from "../../providers/UserContext"
+import { ModalCreate } from "../../components/ModalCreate"
 
-export function DashboardPage({ user, setUser }){
+export function DashboardPage(){
 
-    const navigate = useNavigate()
-
-    function logout(){
-
-        setUser('')
-        localStorage.clear()
-        navigate('/')
-
+    const { user, logout} = useContext(UserContext)
+    const modalRef = useRef(null)
+    
+    function openModal(){
+        modalRef.current.showModal()
     }
 
+
+   
     return(
         <StyledDashboard>
             <header className="container">
@@ -28,8 +29,12 @@ export function DashboardPage({ user, setUser }){
             </section>
             <main className="container">
                 <div>
-                    <h3>Que pena! estamos em desenvolvimento :( </h3>
+                    <h3>Tecnologias</h3>
+                    <button onClick={openModal}>+</button>
                 </div>
+                <ModalCreate modalRef={modalRef}/>
+
+             
                 <ul>Nossa aplicação está em desenvolvimento, em breve teremos novidades</ul>
             </main>
 

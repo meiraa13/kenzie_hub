@@ -1,9 +1,10 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
-import { api } from "../../services/api"
-import { toast } from "react-toastify"
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
+import { useContext, useRef } from "react"
+import { UserContext } from "../../providers/UserContext"
+
 
 const schema = yup.object({
 
@@ -12,34 +13,11 @@ const schema = yup.object({
 
 })
 
-export function LoginForm({ setLoading, setUser }){
+export function LoginForm(){
     const {register, handleSubmit, formState: { errors }} = useForm({resolver:yupResolver(schema)})
-    const navigate = useNavigate()
+    const { userLogin} = useContext(UserContext)
 
-    async function userLogin(data){
-        
-        try{
-            setLoading(true)
-            const response = await api.post('/sessions', data)
-            const userName = response.data.user.name 
-
-            if(response.status == 200){
-
-                toast.success(`Bem-vindo, ${userName}`)
-                navigate(`/dashboard/${userName}`)
-
-                setUser(response.data.user)
-
-                localStorage.setItem('@TOKEN', JSON.stringify(response.data.token))
-                localStorage.setItem('@USERID', JSON.stringify(response.data.user.id))
-            }
-        }catch(error){
-            toast.error('email ou senha inválidos')
-            console.log(error)
-        }finally {
-            setLoading(false)
-        }
-    }
+   
 
     return(
         <form onSubmit={handleSubmit(userLogin)}>
@@ -55,6 +33,7 @@ export function LoginForm({ setLoading, setUser }){
             <button type="submit">Entrar</button>
             <p>Ainda não possui uma conta?</p>
             <Link to={'/register'}>Cadastre-se</Link>
+           
         </form>
     )
 

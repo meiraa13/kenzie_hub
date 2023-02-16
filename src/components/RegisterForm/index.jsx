@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form"
-import { api } from "../../services/api"
-import { toast } from "react-toastify"
-import { useNavigate } from "react-router-dom"
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
+import { useContext } from "react"
+import { useEffect } from "react"
+import { UserContext } from "../../providers/UserContext"
 
 const schema = yup.object({
     name:yup.string().required('Campo obrigatório'),
@@ -23,27 +23,12 @@ const schema = yup.object({
 
 export function RegisterForm(){
     const {register, handleSubmit, formState: { errors },} = useForm({resolver:yupResolver(schema)})
-    const navigate = useNavigate()
-
-    async function registerUser(data){
-        delete data.password_confirm
-        
-        try {
-            const response = await api.post('/users', data)
-            if(response.status == 201){
-                toast.success('Usuário cadastrado com sucesso!')
-                navigate('/')
-            }
-        
-        } catch(error){
-            toast.error('Cadastro não realizado')
-            console.log(error)
-        }
-    }
+    const { userRegister } = useContext(UserContext)
+   
 
    return(
 
-        <form onSubmit={handleSubmit(registerUser)}>
+        <form onSubmit={handleSubmit(userRegister)}>
             <h3>Crie sua conta</h3>
             <p>Rápido e grátis, vamos nessa</p>
             <label htmlFor="name">Nome</label>

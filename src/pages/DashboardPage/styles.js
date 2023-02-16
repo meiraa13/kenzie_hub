@@ -58,4 +58,36 @@ export const StyledDashboard = styled.div`
     p {
         color: var(--grey-1);
     }
+
+    dialog {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        height: 300px;
+        background-color: var(--grey-4);
+        border-style: none;
+        color: white;
+    }
+
+    .modal::backdrop{
+        background: black;
+        opacity: .4;
+    }
+
+    .modal-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 30%;
+        background-color: var(--grey-2);
+        padding: 0.5rem;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem;
+    }
 `

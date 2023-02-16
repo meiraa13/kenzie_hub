@@ -58,4 +58,16 @@ header{
         color:white;
     }
 
+    dialog {
+
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 200px;
+        height: 200px;
+        transform: translate(-50%, -50%);
+
+      
+    }
+
 `
