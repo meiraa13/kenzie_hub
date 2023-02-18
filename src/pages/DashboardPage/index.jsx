@@ -5,16 +5,14 @@ import { UserContext } from "../../providers/UserContext"
 import { ModalCreate } from "../../components/ModalCreate"
 import { ModalEdit } from "../../components/ModalEdit"
 import { TechContext } from "../../providers/TechContext"
+import { TechCards } from "../../components/TechCards"
 
 export function DashboardPage(){
 
     const { user, logout} = useContext(UserContext)
-    const { modal, setModal, editContent, setEditContent} = useContext(TechContext)
+    const { modal, setModal, editContent } = useContext(TechContext)
    
-    
-
-   
-    return(
+     return(
         <StyledDashboard>
             <header className="container">
                 <KenzieHub />
@@ -35,16 +33,7 @@ export function DashboardPage(){
                 {
                     user.techs.length > 0 ? (
                     <ul>
-                        {
-                            user.techs.map((tech)=>(
-                                
-                                    <li onClick={()=> setEditContent(tech)} key={tech.id} >
-                                        <h3 >{tech.title}</h3>
-                                        <p>{tech.status}</p>
-                                    
-                                    </li>
-                            ))
-                        }
+                        { user.techs.map((tech)=>(<TechCards tech={tech} />))}
                     </ul>) 
                     : (<h1>Você não possui tecnologias cadastradas no momento</h1>)
                 }

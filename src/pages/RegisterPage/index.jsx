@@ -20,7 +20,6 @@ export function RegisterPage(){
             </header>
             <main className="container2">
                 <RegisterForm />
-             
             </main>
         </StyledRegister>
     )

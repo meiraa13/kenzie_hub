@@ -2,19 +2,29 @@ import { useForm } from "react-hook-form"
 import { StyledEditModal } from "./styles"
 import { useContext } from "react"
 import { TechContext } from "../../providers/TechContext"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
 
+
+const schema = yup.object({
+
+    title: yup.string().required('Campo obrigatório'),
+    status: yup.string().required('Campo obrigatório')
+})
 
 export function ModalEdit(){
 
-    const { editContent, setEditContent, removeTech} = useContext(TechContext)
+    const { editContent, setEditContent, removeTech, updateTech} = useContext(TechContext)
    
     const {register, handleSubmit, reset} = useForm({
         defaultValues: {
             title:editContent.title,
             status: editContent.status
-        }
+        },
+        resolver:yupResolver(schema)
     })
 
+   
     
     return(
 
@@ -25,9 +35,9 @@ export function ModalEdit(){
                         <h3>Tecnologia Detalhes</h3>
                         <button onClick={()=>setEditContent(null)}>X</button>
                     </div>
-                    <form >
+                    <form onSubmit={handleSubmit(updateTech)}>
                         <label htmlFor="title">Nome</label>
-                        <input id="title" placeholder="Nome da tecnologia"{...register('title')}></input>
+                        <input disabled id="title" placeholder="Nome da tecnologia"{...register('title')}></input>
                         <label htmlFor="status">Selecionar Status</label>
                         <select {...register('status')}>
                             <option value="Iniciante">Iniciante</option>

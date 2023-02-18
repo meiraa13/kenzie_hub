@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
 import { useContext } from "react"
-import { useEffect } from "react"
 import { UserContext } from "../../providers/UserContext"
 
 const schema = yup.object({

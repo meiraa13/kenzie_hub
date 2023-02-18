@@ -1,14 +1,19 @@
 import { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { UserContext } from "../../providers/UserContext"
-import { api } from "../../services/api"
 import { StyledModal } from "./styles"
-import { toast } from "react-toastify"
 import { TechContext } from "../../providers/TechContext"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
+
+const schema = yup.object({
+
+    title: yup.string().required('Campo obrigatório'),
+    status: yup.string().required('Campo obrigatório')
+})
 
 export function ModalCreate(){
 
-    const {register, handleSubmit, reset} = useForm()
+    const {register, handleSubmit, formState: { errors }} = useForm({resolver:yupResolver(schema)})
     const { createTech, setModal } = useContext(TechContext)
     
   
@@ -25,12 +30,16 @@ export function ModalCreate(){
                     <form onSubmit={handleSubmit(createTech)}>
                         <label htmlFor="title">Nome</label>
                         <input id="title" placeholder="Nome da tecnologia"{...register('title')}></input>
+                        <p>{errors.title?.message}</p>
+
                         <label htmlFor="status">Selecionar Status</label>
                         <select {...register('status')}>
                             <option value="Iniciante">Iniciante</option>
                             <option value="Intermediário">Intermediário</option>
                             <option value="Avançado">Avançado</option>
                         </select>
+                        <p>{errors.status?.message}</p>
+                        
                         <button className="btn-create">Cadastrar Tecnologia</button>
                     </form>
                 </div>

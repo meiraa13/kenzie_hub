@@ -21,7 +21,7 @@ export function TechProvider({children}){
                     Authorization: `Bearer ${token}`
                 }
             } )
-            toast.success('tecnologia cadastrada!')
+            toast.success('Tecnologia cadastrada!')
             setModal(false)
             setUser({...user, techs:[...user.techs, response.data]})
 
@@ -47,12 +47,45 @@ export function TechProvider({children}){
             setEditContent(null)
 
         } catch (error) {
-            console.log(error)            
+            console.log(error) 
+            toast.error('Não foi possível deletar')           
         }
     }
 
+    async function updateTech(data){
+        delete data.title
+        
+        try {
+            const token = localStorage.getItem('@TOKEN')
+            const response = await api.put(`/users/techs/${editContent.id}`, data, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            let arrayTechs = user.techs
+            const newTechs = arrayTechs.map((tech)=>{
+                if(editContent.id === tech.id){
+                    return {...tech, ...data}
+                } else {
+                    return tech
+                }
+            })
+            toast('Tecnologia atualizada!')
+            setUser({...user, techs:[...newTechs]})
+            setEditContent(null)
+
+            
+        } catch (error) {
+            console.log(error)
+            toast.error('Não foi possível atualizar')
+        }
+      
+
+        
+    }
+
     return(
-        <TechContext.Provider value={{modal, setModal, editContent, setEditContent, createTech, removeTech}}>
+        <TechContext.Provider value={{modal, setModal, editContent, setEditContent, createTech, removeTech, updateTech}}>
             {children}
         </TechContext.Provider>
     )
