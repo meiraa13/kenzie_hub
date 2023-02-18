@@ -7,7 +7,7 @@ export const UserContext = createContext({})
 
 export function UserProvider({ children }){
 
-    const [user, setUser] = useState()
+    const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
